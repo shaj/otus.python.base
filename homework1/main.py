@@ -5,14 +5,12 @@ import math
 import operator
 from pprint import pprint
 import time
-from functools import wraps
+import functools
+import itertools
 
-
-# Про декораторы
-# https://pythonworld.ru/osnovy/dekoratory.html
 
 def my_timeit(func):
-    @wraps(func)
+    @functools.wraps(func)
     def wrapper(*args, **kwargs):
         t = time.clock()
         ret = func(*args, **kwargs)
@@ -22,7 +20,7 @@ def my_timeit(func):
 
 
 def my_depth(func):
-    @wraps(func)
+    @functools.wraps(func)
     def wrapper(*args, **kwargs):
         wrapper.count += 1
         ret = func(*args, **kwargs)
@@ -46,6 +44,16 @@ def my_pow(data, p=2):
 def my_pow1(data, p=2):
     list_pow = [p] * len(data)
     return list(map(operator.pow, data, list_pow))
+
+
+# Другие варианты передачи параметров в map:
+# https://stackoverflow.com/a/10834984
+def my_pow2(data, p=2):
+    return list(map(functools.partial(operator.pow, p), data))
+
+
+def my_pow3(data, p=2):
+    return list(map(operator.pow, data, itertools.repeat(p, len(data))))
 
 
 def is_prime(n):
@@ -89,10 +97,12 @@ def fybonacci(n):
 
 if __name__ == '__main__':
     test1 = [1, 2, 3, 4, 5]
-    pprint(my_pow(test1))
-    pprint(my_pow(test1, p=0.5))
-    pprint(my_pow1(test1))
-    pprint(my_pow1(test1, p=0.5))
+    print('my_pow', my_pow(test1))
+    print('my_pow', my_pow(test1, p=0.5))
+    print('my_pow1', my_pow1(test1))
+    print('my_pow1', my_pow1(test1, p=0.5))
+    print('my_pow2', my_pow2(test1))
+    print('my_pow3', my_pow3(test1, p=0.5))
     pprint(my_filter(test1))
     pprint(my_filter(test1, f=0))
     pprint(my_filter(test1, f=1))
