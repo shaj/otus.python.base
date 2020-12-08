@@ -8,9 +8,6 @@ import time
 from functools import wraps
 
 
-# Про декораторы
-# https://pythonworld.ru/osnovy/dekoratory.html
-
 def my_timeit(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
