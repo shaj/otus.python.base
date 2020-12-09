@@ -32,7 +32,6 @@ def my_depth(func):
         return ret
     wrapper.count = 0
     wrapper.maxdepth = 0
-    print(u'new wrapper')
     return wrapper
 
 
@@ -60,20 +59,29 @@ def is_prime(n):
     return True
 
 
+FILTER_EVEN_NUMBERS = 0
+FILTER_ODD_NUMBERS = 1
+FILTER_PRIME_NUMBERS = 2
+
+
 def my_filter(data, f=0):
-    if(f == 0):
+    if f == FILTER_EVEN_NUMBERS:
         # Even numbers
         return list(filter(lambda x: not (x & 1), data))
-    elif(f == 1):
+    if f == FILTER_ODD_NUMBERS:
         # Odd numbers
         return list(filter(lambda x: x & 1, data))
-    elif(f == 2):
+    if f == FILTER_PRIME_NUMBERS:
         # Prime numbers
         return list(filter(is_prime, data))
+    # Unknown command
+    return list()
 
 
 @my_depth
 def fyb(n):
+    if n == 0:
+        return 0
     if n <= 2:
         return 1
     return fyb(n - 1) + fyb(n - 2)
@@ -91,10 +99,11 @@ if __name__ == '__main__':
     pprint(my_pow1(test1))
     pprint(my_pow1(test1, p=0.5))
     pprint(my_filter(test1))
-    pprint(my_filter(test1, f=0))
-    pprint(my_filter(test1, f=1))
-    pprint(my_filter(list(range(100)), f=2), compact=True)
-    pprint(my_filter([-1, -2, -3, -4, -5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], f=2), compact=True)
+    pprint(my_filter(test1, f=FILTER_EVEN_NUMBERS))
+    pprint(my_filter(test1, f=FILTER_ODD_NUMBERS))
+    pprint(my_filter(list(range(100)), f=FILTER_PRIME_NUMBERS), compact=True)
+    pprint(my_filter([-1, -2, -3, -4, -5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], f=FILTER_PRIME_NUMBERS),
+           compact=True)
 
     print('\nИсследование декораторов:\n')
     print(fybonacci(10))
