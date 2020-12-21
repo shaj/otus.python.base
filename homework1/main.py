@@ -49,7 +49,7 @@ def my_pow1(data, p=2):
 # Другие варианты передачи параметров в map:
 # https://stackoverflow.com/a/10834984
 def my_pow2(data, p=2):
-    return list(map(functools.partial(operator.pow, p), data))
+    return list(map(functools.partial(operator.pow, exp=p), data))
 
 
 def my_pow3(data, p=2):
