@@ -30,8 +30,23 @@ def my_depth(func):
             print(u"Глубина вызовов {0} была {1}".format(func.__name__, wrapper.maxdepth))
             wrapper.maxdepth = 0
         return ret
+
     wrapper.count = 0
     wrapper.maxdepth = 0
+    return wrapper
+
+
+def my_tracer(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print('•' * wrapper.level, '->', func.__name__)
+        wrapper.level += 1
+        retval = func(*args, **kwargs)
+        wrapper.level -= 1
+        print('•' * wrapper.level, '<-', retval)
+        return retval
+
+    wrapper.level = 1
     return wrapper
 
 
@@ -82,9 +97,18 @@ def my_filter(data, f=0):
 def fyb(n):
     if n == 0:
         return 0
-    if n <= 2:
+    if n == 1:
         return 1
     return fyb(n - 1) + fyb(n - 2)
+
+
+@my_tracer
+def fyb1(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fyb1(n - 1) + fyb1(n - 2)
 
 
 @my_timeit
@@ -109,3 +133,6 @@ if __name__ == '__main__':
     print(fybonacci(10))
     print(fybonacci(11))
     print(fybonacci(20))
+
+    print('\nТрассировка\n')
+    print(fyb1(6))
