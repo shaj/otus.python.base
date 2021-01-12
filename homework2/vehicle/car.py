@@ -23,7 +23,7 @@ class Car(Vehicle):
 
     def slow_down(self, n: int):
         if n < 0:
-            raise ""
+            raise ValueError('value must be positive')
         if self._speed > 0:
             if n > self._speed:
                 self._speed = 0
@@ -37,4 +37,3 @@ class Car(Vehicle):
 
     def beep(self):
         print("Beep...")
-

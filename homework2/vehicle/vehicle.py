@@ -1,4 +1,3 @@
-#!/bin/env pyton3
 # -*- coding: utf-8 -*-
 
 from abc import ABC, abstractmethod
@@ -12,6 +11,9 @@ class Vehicle(ABC):
         self.name = name
         self._speed = 0
         self._max_speed = max_speed
+
+    def __str__(self):
+        return 'Object "{}" named as "{}"'.format(self.__class__.__name__, self.name)
 
     @abstractmethod
     def accelerate(self, n: int):

@@ -2,5 +2,5 @@
 
 from .car import Car
 from .vehicle import Vehicle
-from .boat import Boat
+from .boat import Boat, SailBoat
 # import vehiclemixin
