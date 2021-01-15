@@ -2,13 +2,19 @@
 # -*- coding: utf-8 -*-
 
 from .vehicle import Vehicle
+from dataclasses import dataclass, field
 
 
+@dataclass
 class Car(Vehicle):
     """ """
 
-    def __init__(self, name="Ведро с болтами", max_speed=50):
-        super().__init__(name, max_speed)
+    name: str = "Ведро с болтами"
+    _max_speed: int = 50
+    _speed: int = field(init=False)
+
+    # def __init__(self, name="Ведро с болтами", max_speed=50):
+    #     super().__init__(name, max_speed)
 
     def __str__(self):
         return super().__str__()

@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
 
 from abc import ABC, abstractmethod
+from dataclasses import dataclass, field
 
 
+@dataclass
 class Vehicle(ABC):
     """ """
 
-    def __init__(self, name="", max_speed=0):
-        super().__init__()
-        self.name = name
+    name: str = ""
+    _max_speed: int = 0
+    _speed: int = field(init=False)
+
+    def __post_init__(self):
         self._speed = 0
-        self._max_speed = max_speed
 
     def __str__(self):
         return 'Object "{}" named as "{}"'.format(self.__class__.__name__, self.name)
