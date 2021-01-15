@@ -11,7 +11,6 @@ class Car(Vehicle):
 
     name: str = "Ведро с болтами"
     _max_speed: int = 50
-    _speed: int = field(init=False)
 
     # def __init__(self, name="Ведро с болтами", max_speed=50):
     #     super().__init__(name, max_speed)
