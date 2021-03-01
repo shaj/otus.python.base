@@ -20,10 +20,10 @@ class User(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     user_class = Column(String(64), default="~", server_default="~")
 
-    # posts = relationship("Post", back_populates="user")
+    posts = relationship("Post", back_populates="user")
 
     def __str__(self):
-        return f"{self.__class__.__name__}(id={self.id}, username={self.username!r}, is_staff={self.is_staff})"
+        return f"{self.__class__.__name__}(id={self.id}, username={self.username!r}, cnt={self.user_class})"
 
     def __repr__(self):
         return str(self)
