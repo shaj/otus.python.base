@@ -24,7 +24,7 @@ class Service:
 
 
 REQUESTS = [
-    ServTemplate("Post", "https://jsonplaceholder.typicode.com/posts/", (1, 99)),
+    ServTemplate("Post", "https://jsonplaceholder.typicode.com/posts/", (90, 110)),
 ]
 
 
@@ -37,7 +37,7 @@ async def fetch_data(service: Service):
     logger.info("Start {}", service.name)
     async with ClientSession() as session:
         service.data = await fetch_json(session, service.url)
-    logger.info("End {}", service.name)
+    logger.info("End {}   {}", service.name, len(service.data))
 
 
 async def pull_data():
