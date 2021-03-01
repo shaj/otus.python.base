@@ -5,3 +5,5 @@
 - SQLAlchemy
 - alembic
 
+[Fake API for testing](https://jsonplaceholder.typicode.com/)
+
