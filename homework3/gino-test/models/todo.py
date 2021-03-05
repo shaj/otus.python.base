@@ -7,7 +7,6 @@ class Todo(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    # user = db.relationship("User", back_populates="todos")
     title = db.Column(db.Text)
     completed = db.Column(db.Boolean, nullable=False, default=False, server_default="0")
 
@@ -16,3 +15,15 @@ class Todo(db.Model):
 
     def __repr__(self):
         return str(self)
+
+    def update_jsonplaceholder(self, data: dict):
+        try:
+            self.id = int(data["id"])
+        except Exception:
+            pass
+        try:
+            self.user_id = int(data["userId"])
+        except Exception:
+            pass
+        self.title = data["title"]
+        self.completed = data["completed"]

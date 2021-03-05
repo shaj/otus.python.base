@@ -24,7 +24,7 @@ class Service:
 
 
 REQUESTS = [
-    ServTemplate("Post", "https://jsonplaceholder.typicode.com/posts/", (90, 110)),
+    ServTemplate("Post", "https://jsonplaceholder.typicode.com/users/", (10, 11)),
 ]
 
 
@@ -56,7 +56,11 @@ async def pull_data():
     )
     await coro
 
-    pprint(services[0].data)
+    ddd = services[0].data
+    pprint(type(ddd))
+    pprint(ddd)
+    pprint(ddd["id"])
+    pprint(ddd["address"]["city"])
 
 
 def main():

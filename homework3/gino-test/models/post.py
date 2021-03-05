@@ -18,3 +18,15 @@ class Post(db.Model):
 
     def __repr__(self):
         return str(self)
+
+    def update_jsonplaceholder(self, data: dict):
+        try:
+            self.id = int(data["id"])
+        except Exception:
+            pass
+        try:
+            self.user_id = int(data["userId"])
+        except Exception:
+            pass
+        self.title = data["title"]
+        self.body = data["body"]

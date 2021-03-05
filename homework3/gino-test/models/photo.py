@@ -6,7 +6,7 @@ class Photo(db.Model):
     __tablename__ = "photos"
 
     id = db.Column(db.Integer, primary_key=True)
-    albumid = db.Column(db.Integer, db.ForeignKey("albums.id"))
+    album_id = db.Column(db.Integer, db.ForeignKey("albums.id"))
     # album = db.relationship("Album", back_populates="photos")
     title = db.Column(db.String(128))
     url = db.Column(db.String(256))
@@ -19,3 +19,16 @@ class Photo(db.Model):
 
     def __repr__(self):
         return str(self)
+
+    def update_jsonplaceholder(self, data: dict):
+        try:
+            self.id = int(data["id"])
+        except Exception:
+            pass
+        try:
+            self.album_id = int(data["albumId"])
+        except Exception:
+            pass
+        self.title = data["title"]
+        self.url = data["url"]
+        self.thumbnailUrl = data["thumbnailUrl"]
