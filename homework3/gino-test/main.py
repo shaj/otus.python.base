@@ -4,7 +4,6 @@ from aiohttp import ClientSession
 
 from urllib.parse import urljoin
 from loguru import logger
-from pprint import pprint
 from models import (
     DB_DSN,
     db,
@@ -43,7 +42,6 @@ REQUESTS3 = [
 
 
 async def create_record(Row: db.Model, data: dict):
-    # pprint(data)
     row: Row = None
     try:
         row = await Row.get(int(data["id"]))
@@ -53,9 +51,9 @@ async def create_record(Row: db.Model, data: dict):
         row = Row()
         row.update_jsonplaceholder(data)
         await row.create()
-    else:
-        row.update_jsonplaceholder(data)
-        await row.update()
+    # else:
+    #     row.update_jsonplaceholder(data)
+    #     await row.update().apply()
 
 
 async def fetch_json(session: ClientSession, url: str) -> dict:
@@ -70,7 +68,6 @@ async def fetch_data(table: Table):
         data = {}
         async with ClientSession() as session:
             u = urljoin(BASE_URL, str(table.url + "/" + str(counter)))
-            logger.warning("{}", u)
             data = await fetch_json(session, u)
         if len(data) == 0:
             break

@@ -30,7 +30,6 @@ class User(db.Model):
         return str(self)
 
     def update_jsonplaceholder(self, data: dict):
-        logger.warning(type(data))
         try:
             self.id = int(data["id"])
         except Exception:
