@@ -47,13 +47,17 @@ async def create_record(Row: db.Model, data: dict):
         row = await Row.get(int(data["id"]))
     except Exception:
         pass
-    if row is None:
-        row = Row()
-        row.update_jsonplaceholder(data)
-        await row.create()
-    # else:
-    #     row.update_jsonplaceholder(data)
-    #     await row.update().apply()
+    try:
+        if row is None:
+            row = Row()
+            row.update_jsonplaceholder(data)
+            await row.create()
+        # else:
+        #     row.update_jsonplaceholder(data)
+        #     await row.update().apply()
+    except Exception as e:
+        logger.error(e.args[0])
+        logger.error("{}  ::  {}", Row.__repr__, repr(data))
 
 
 async def fetch_json(session: ClientSession, url: str) -> dict:

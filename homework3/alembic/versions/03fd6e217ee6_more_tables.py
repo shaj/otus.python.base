@@ -36,8 +36,8 @@ def upgrade():
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('postId', sa.Integer(), nullable=True),
-    sa.Column('name', sa.String(length=32), nullable=False),
-    sa.Column('email', sa.String(length=32), nullable=False),
+    sa.Column('name', sa.String(length=128), nullable=False),
+    sa.Column('email', sa.String(length=128), nullable=False),
     sa.Column('body', sa.Text(), nullable=True),
     sa.ForeignKeyConstraint(['postId'], ['posts.id'], ),
     sa.PrimaryKeyConstraint('id')
