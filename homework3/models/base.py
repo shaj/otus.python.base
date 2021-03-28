@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 from gino import Gino
 
-DB_DSN = "postgres://user:password@localhost:5432/postgres"
+DB_DSN = "postgres://user:password@localhost:5432/typicode"
 
 db = Gino()
 
