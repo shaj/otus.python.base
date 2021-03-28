@@ -1,0 +1,27 @@
+version: "3.5"
+
+services:
+  pg:
+    image: postgres # use latest official postgres version
+    env_file:
+      - typicode/docker/postgres.env # configure postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./docker-data/pg-data:/var/lib/postgresql/data:z # persist data even if container shuts down
+
+  typicode:
+    build:
+      context: typicode
+      dockerfile: Dockerfile
+    command: python main.py
+    # environment:
+    #   SQLALCHEMY_DATABASE_URI: "postgresql+psycopg2://user:password@pg:5432/typicode"
+    env_file:
+      - typicode/docker/postgres.env # configure postgres
+    ports:
+      - 5000:5000
+    volumes:
+      - ./typicode:/var/app
+    depends_on:
+      - pg

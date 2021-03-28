@@ -1,0 +1,4 @@
+.vscode
+docker-data
+env
+*.code-workspace
