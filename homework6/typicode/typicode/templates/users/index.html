@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Users
+{% endblock %}
+
+
+{% block body %}
+  <h1>Users</h1>
+ <div><small>Method (request.method): {{ request.method }}</small></div>
+ <div><small>endpoint {request.endpoint}: {{ request.endpoint }}</small></div>
+  <div>
+    <ul>
+      {% for user in users %}
+        <li>
+          <a href="{{ url_for('users_app.details', user_id=user.id) }}">{{ user.fullname }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div>
+    <a href="{{ url_for('users_app.add') }}">New user</a>
+  </div>
+{% endblock %}

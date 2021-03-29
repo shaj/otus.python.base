@@ -24,10 +24,10 @@
 
 {% block body %}
   <form method="post">
-    <label for="product-name-id">Product name:</label>
+    <label for="user-name-id">User name:</label>
     <input
-      id="product-name-id"
-      name="product-name"
+      id="user-name-id"
+      name="user-name"
       type="text"
       placeholder="{{ last_element_name }}"
       required
@@ -40,7 +40,7 @@
   </form>
 
   <hr>
-  <a href="{{ url_for('product_app.list') }}">back to products list</a>
+  <a href="{{ url_for('users_app.list') }}">back to products list</a>
 
   <script>
     console.log('Hello JS!');

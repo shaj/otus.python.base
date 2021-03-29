@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 from flask_migrate import Migrate
 
-from .views.products import product_app
+from .views.users import users_app
 from .models.database import db
 from .config import *
 
@@ -12,7 +12,7 @@ app.config.from_object(DevelopmentConfig)
 db.init_app(app)
 
 migrate = Migrate(app, db)
-# app.register_blueprint(product_app, url_prefix="/products")
+app.register_blueprint(users_app, url_prefix="/users")
 
 
 @app.route("/")
