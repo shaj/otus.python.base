@@ -8,8 +8,8 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     post_id = db.Column(db.Integer, db.ForeignKey("posts.id"))
-    name = db.Column(db.String(32), nullable=False)
-    email = db.Column(db.String(32), nullable=False)
+    name = db.Column(db.String(128), nullable=False)
+    email = db.Column(db.String(128), nullable=False)
     body = db.Column(db.Text)
 
     def __str__(self):
