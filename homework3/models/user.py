@@ -9,6 +9,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fullname = db.Column(db.String(32))
     username = db.Column(db.String(32), unique=True)
+    phone = db.Column(db.String(32))
     email = db.Column(db.String(32))
     website = db.Column(db.String(128))
 
