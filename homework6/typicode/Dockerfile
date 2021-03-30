@@ -1,3 +1,5 @@
+# docker build . -t typicode
+# docker run -p 5000:5000 -v $(pwd):/var/app:z typicode
 FROM python:3.8-buster
 
 WORKDIR /var/app
@@ -13,3 +15,5 @@ RUN poetry install --no-interaction --no-ansi
 # COPY main.py .
 
 EXPOSE 5000
+
+# CMD python main.py
