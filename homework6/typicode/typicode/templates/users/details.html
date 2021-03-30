@@ -7,7 +7,7 @@
 
 {% block body %}
   <div class="p-5">
-    <h1>{{ user.fullname }}</h1>
+    <h1>{{ user.fullname }} ({{ user.username }})</h1>
     <h5>Phone: {{ user.phone }}</h5>
     <h5>e-mail: <code><a href="mailto:{{ user.email }}">{{ user.email }}</a></code></h5>
     <h5>website: <code><a href="http://{{ user.website }}">{{ user.website }}</a></code></h5>

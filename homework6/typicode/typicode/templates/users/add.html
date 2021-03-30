@@ -8,13 +8,38 @@
 {% endblock %}
 
 {% block body %}
+  {% if msg %}
+    <div class="container p-1 border">
+      <div class="alert alert-danger">
+        {{ msg }}
+      </div>
+    </div>
+  {% endif %}
   <form method="post">
     <label for="user-name-id">User name:</label>
     <input
       id="user-name-id"
       name="user-name"
       type="text"
-      placeholder="{{ last_element_name }}"
+      placeholder="name"
+      required
+    >
+    <br/>
+    <label for="user-fullname-id">User name:</label>
+    <input
+      id="user-fullname-id"
+      name="user-fullname"
+      type="text"
+      placeholder="Full name"
+      required
+    >
+    <br/>
+    <label for="user-phone-id">User name:</label>
+    <input
+      id="user-phone-id"
+      name="user-phone"
+      type="text"
+      placeholder="+7(---)--- -- --"
       required
     >
     <br/>

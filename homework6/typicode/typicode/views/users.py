@@ -30,9 +30,22 @@ def user_details(user_id):
 @users_app.route("/add/", methods=["GET", "POST"], endpoint="add")
 def user_add():
     if request.method == "GET":
-        return render_template("users/add.html")
+        return render_template(
+            "users/add.html",
+            msg='',
+        )
 
-    user = User(fullname=request.form.get("user-name"))
+    username = request.form.get("user-name")
+    user = User.query.filter_by(username=username).one_or_none()
+    if not user is None:
+        return render_template(
+            "users/add.html",
+            msg='User name must be unique ' + username,
+        )
+    user = User()
+    user.username = username
+    user.fullname = request.form.get("user-fullname")
+    user.phone = request.form.get("user-phone")
     db.session.add(user)
     db.session.commit()
     return redirect(url_for("users_app.list"))
