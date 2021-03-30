@@ -32,7 +32,7 @@ def user_add():
     if request.method == "GET":
         return render_template("users/add.html")
 
-    user = User(name=request.form.get("user-name"))
+    user = User(fullname=request.form.get("user-name"))
     db.session.add(user)
     db.session.commit()
     return redirect(url_for("users_app.list"))

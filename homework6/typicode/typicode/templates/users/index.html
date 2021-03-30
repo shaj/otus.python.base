@@ -1,22 +1,34 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Users
+Users
 {% endblock %}
 
 
 {% block body %}
   <h1>Users</h1>
- <div><small>Method (request.method): {{ request.method }}</small></div>
- <div><small>endpoint {request.endpoint}: {{ request.endpoint }}</small></div>
-  <div>
-    <ul>
+  <div><small>Method (request.method): {{ request.method }}</small></div>
+  <div><small>endpoint {request.endpoint}: {{ request.endpoint }}</small></div>
+  <div class="container overflow-hidden">
+    <div class="row row-cols-3">
       {% for user in users %}
-        <li>
-          <a href="{{ url_for('users_app.details', user_id=user.id) }}">{{ user.fullname }}</a>
-        </li>
+        <div class="col">
+          <div class="p-3">
+            <div class="card" style="width: 18rem;">
+              <!-- <img src="..." class="card-img-top" alt="..."> -->
+              <div class="card-body">
+                <h5 class="card-title">{{ user.fullname }}</h5>
+                <div class="card-text">
+                  Some quick example text to build on the card title and make up the bulk of the card's
+                  content.
+                </div>
+                <a href="{{ url_for('users_app.details', user_id=user.id) }}" class="btn btn-primary">User details</a>
+              </div>
+            </div>
+          </div>
+        </div>
       {% endfor %}
-    </ul>
+    </div>
   </div>
   <div>
     <a href="{{ url_for('users_app.add') }}">New user</a>
