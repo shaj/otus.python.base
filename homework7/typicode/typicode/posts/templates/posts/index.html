@@ -1,0 +1,36 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}
+  Typicode project main page
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>{{ zoo_name }}</h1>
+    <h2>{{ animals }}</h2>
+</div>
+<div class="container-sm px-4">
+  <div class="row">
+    <figure class="text-center">
+      <div class="p-3 border bg-light"><h1><a href="#">Users</a></h1></div>
+      <!--{#{ url_for('users_app.list') }#}-->
+    </figure>
+  </div>
+  <div class="row">
+    <figure class="text-center">
+      <div class="p-3 border bg-light"><h1>Posts</h1></div>
+    </figure>
+  </div>
+  <div class="row">
+    <figure class="text-center">
+      <div class="p-3 border bg-light"><h1>Albums</h1></div>
+    </figure>
+  </div>
+</div>
+
+{% endblock %}
+

@@ -17,8 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
-    path('', views.main_view),
-    path('post/<int>', views.post_detail),
-    path('newpost/', views.new_post),
+    path('', views.index_view),
+    # path('post/<int>', views.post_detail),
+    # path('newpost/', views.new_post),
 ]
