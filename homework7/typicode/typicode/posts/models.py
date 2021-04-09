@@ -76,7 +76,7 @@ class Todo(models.Model):
 class Post(models.Model):
 
     user_id = models.ForeignKey(User, on_delete=PROTECT)
-    title = models.CharField(256, null=False)
+    title = models.CharField(max_length=256, null=False)
     body = models.TextField()
 
     def __str__(self):
@@ -101,8 +101,8 @@ class Post(models.Model):
 class Comment(models.Model):
 
     post_id = models.ForeignKey(Post, on_delete=PROTECT)
-    name = models.CharField(128, null=False)
-    email = models.CharField(128, null=False)
+    name = models.CharField(max_length=128, null=False)
+    email = models.CharField(max_length=128, null=False)
     body = models.TextField()
 
     def __str__(self):
@@ -123,3 +123,53 @@ class Comment(models.Model):
         self.name = data["name"]
         self.email = data["email"]
         self.body = data["body"]
+
+
+class Album(models.Model):
+
+    user_id = models.ForeignKey(User, on_delete=PROTECT)
+    title = models.TextField()
+
+    def __str__(self):
+        return f"{self.__class__.__name__}(id={self.id}, username={self.username!r}, is_staff={self.is_staff})"
+
+    def __repr__(self):
+        return str(self)
+
+    def update_jsonplaceholder(self, data: dict):
+        try:
+            self.id = int(data["id"])
+        except Exception:
+            pass
+        try:
+            self.user_id = int(data["userId"])
+        except Exception:
+            pass
+        self.title = data["title"]
+
+
+class Photo(models.Model):
+
+    album_id = models.ForeignKey(User, on_delete=PROTECT)
+    title = models.CharField(max_length=128)
+    url = models.CharField(max_length=256)
+    thumbnailUrl = models.CharField(max_length=256)
+
+    def __str__(self):
+        return f"{self.__class__.__name__}(id={self.id}, username={self.username!r}, is_staff={self.is_staff})"
+
+    def __repr__(self):
+        return str(self)
+
+    def update_jsonplaceholder(self, data: dict):
+        try:
+            self.id = int(data["id"])
+        except Exception:
+            pass
+        try:
+            self.album_id = int(data["albumId"])
+        except Exception:
+            pass
+        self.title = data["title"]
+        self.url = data["url"]
+        self.thumbnailUrl = data["thumbnailUrl"]
